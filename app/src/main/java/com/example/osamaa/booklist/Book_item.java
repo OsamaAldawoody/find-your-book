@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +21,15 @@ public class Book_item extends AppCompatActivity {
 
 
     BookAdapter adapter;
+
+    TextView notfoundResult;
+    private ProgressBar pgsBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_view);
+
+        notfoundResult = findViewById(R.id.notfound);
 
         String url = getIntent().getStringExtra("URL");
 
@@ -34,10 +41,9 @@ public class Book_item extends AppCompatActivity {
         adapter = new BookAdapter(this,new ArrayList<Books>());
 
 
-
         bookListView.setAdapter(adapter);
 
-
+        bookListView.setEmptyView(notfoundResult);
 
         bookAsyncTask bookAsyncTask = new bookAsyncTask();
         bookAsyncTask.execute(url);

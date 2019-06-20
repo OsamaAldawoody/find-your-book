@@ -2,5 +2,6 @@
     <string name="app_name">book list</string>
     <string name="search_button">Search</string>
     <string name="search_hint">find your book ...</string>
-    <string name="search_book">Search Book</string>
+    <string name="search_book">Explore your Book</string>
+    <string name="result_not_found">Result not found....</string>
 </resources>

@@ -22,24 +22,7 @@ public final class BookUtils {
     private static String LOG_TAG = BookUtils.class.getName();
     public BookUtils(){}
 
-    public static String formatListOfAuthors(JSONArray authorsList) throws JSONException {
 
-        String authorsListInString = null;
-
-        if (authorsList.length() == 0) {
-            return null;
-        }
-
-        for (int i = 0; i < authorsList.length(); i++){
-            if (i == 0) {
-                authorsListInString = authorsList.optString(0);
-            } else {
-                authorsListInString += ", " + authorsList.optString(i);
-            }
-        }
-
-        return authorsListInString;
-    }
     public static List<Books> extractBooks (String urlString){
 
         URL url = createUrl(urlString);
@@ -161,15 +144,15 @@ public final class BookUtils {
             for (int i=0; i < jsonArray.length();i++){
                 JSONObject ObjectBook = jsonArray.getJSONObject(i);
                 JSONObject ObjectInfo = ObjectBook.getJSONObject("volumeInfo");
+                JSONObject imageLinksInfo = ObjectInfo.getJSONObject("imageLinks");
+                String imageLink = imageLinksInfo.optString("smallThumbnail");
                 String title = ObjectInfo.optString("title");
-                JSONArray author = ObjectInfo.getJSONArray( "authors");
-                String authors = formatListOfAuthors(author);
 
                 String publishDate = ObjectInfo.optString("publishedDate");
 
                 String url = ObjectInfo.getString("infoLink");
 
-                Books Book= new Books(title,authors,url,publishDate);
+                Books Book= new Books(title,imageLink,url,publishDate);
                 BooksList.add(Book);
             }
 

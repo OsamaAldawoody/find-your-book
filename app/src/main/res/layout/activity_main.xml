@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
 
@@ -12,15 +13,19 @@
         android:layout_height="wrap_content"
         android:text="@string/search_book"
         android:id="@+id/search_book"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/search_edit_button"
-        android:textSize="40sp"
-        android:paddingBottom="30dp"/>
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:textSize="28sp"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_centerInParent="true"
+        android:layout_below="@+id/search_book"
+        android:layout_marginTop="36dp"
         android:id="@+id/search_edit_button">
 
         <EditText
@@ -34,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/search_button"
-            android:text="@string/search_button" />
+            android:background="@drawable/research2" />
     </LinearLayout>
 
 
