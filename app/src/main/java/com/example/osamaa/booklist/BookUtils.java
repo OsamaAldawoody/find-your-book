@@ -1,5 +1,7 @@
 package com.example.osamaa.booklist;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -146,13 +148,11 @@ public final class BookUtils {
                 JSONObject ObjectInfo = ObjectBook.getJSONObject("volumeInfo");
                 JSONObject imageLinksInfo = ObjectInfo.getJSONObject("imageLinks");
                 String imageLink = imageLinksInfo.optString("smallThumbnail");
+                Bitmap image = getBitmapImage(imageLink);
                 String title = ObjectInfo.optString("title");
-
                 String publishDate = ObjectInfo.optString("publishedDate");
-
                 String url = ObjectInfo.getString("infoLink");
-
-                Books Book= new Books(title,imageLink,url,publishDate);
+                Books Book= new Books(title,image,url,publishDate);
                 BooksList.add(Book);
             }
 
@@ -167,4 +167,26 @@ public final class BookUtils {
         // Return the list of earthquakes
         return BooksList;
     }
+
+    private static Bitmap getBitmapImage(String imageLink){
+        Bitmap bmp = null;
+        if (imageLink == null){
+        return null;
+        }
+
+
+        URL reallyUrl = null;
+        try {
+
+        reallyUrl = new URL(imageLink);
+         bmp = BitmapFactory.decodeStream(reallyUrl.openConnection().getInputStream());
+        } catch (MalformedURLException e) {
+        e.printStackTrace();
+        } catch (IOException e) {
+        e.printStackTrace();
+        }
+        return bmp;
+    }
+
+
 }

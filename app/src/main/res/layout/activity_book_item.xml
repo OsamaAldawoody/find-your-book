@@ -13,21 +13,28 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="2dp">
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="title"
-        android:padding="4dp"
-        android:id="@+id/title"
-        android:textSize="24sp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="publish_date"
-        android:padding="2dp"
-        android:layout_below="@id/title"
-        android:id="@+id/publish_date"
-        android:textSize="12sp" />
+        android:orientation="vertical"
+        android:layout_toLeftOf="@+id/book_image">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="title"
+            android:padding="4dp"
+            android:id="@+id/title"
+            android:textSize="24sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="publish_date"
+            android:padding="2dp"
+            android:layout_below="@id/title"
+            android:id="@+id/publish_date"
+            android:textSize="12sp" />
+    </LinearLayout>
+
 
     <ImageView
         android:layout_width="wrap_content"

@@ -51,13 +51,8 @@ public class BookAdapter extends ArrayAdapter<Books> {
             titleTextView.setText(currentBook.getTitle());
 
             bookImageView = ListItemView.findViewById(R.id.book_image);
+            bookImageView.setImageBitmap(currentBook.getImage());
 
-            String url = currentBook.getImageLink();
-
-            imageAsyncTask imageAsyncTask = new imageAsyncTask();
-            imageAsyncTask.execute(url);
-
-            bookImageView.setImageBitmap(bmp);
 
             TextView publisDateTextView = ListItemView.findViewById(R.id.publish_date);
             String publishDate = bublishedAt+currentBook.getPublishDate();
@@ -67,35 +62,5 @@ public class BookAdapter extends ArrayAdapter<Books> {
 
         return ListItemView;
     }
-private class imageAsyncTask extends AsyncTask<String,Void,Bitmap>{
-
-    @Override
-    protected Bitmap doInBackground(String... url) {
-        if (url.length < 1 || url[0] == null){
-            return null;
-        }
-
-
-        URL realyUrl = null;
-        try {
-
-            realyUrl = new URL(url[0]);
-            bmp = BitmapFactory.decodeStream(realyUrl.openConnection().getInputStream());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        return bmp;
-    }
-
-    @Override
-    protected void onPostExecute(Bitmap bitmap) {
-        if (bitmap != null){
-            bookImageView.setImageBitmap(bitmap);
-        }
-    }
 }
-}
+
