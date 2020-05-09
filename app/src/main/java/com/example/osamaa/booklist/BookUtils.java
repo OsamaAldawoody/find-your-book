@@ -25,7 +25,7 @@ public final class BookUtils {
     public BookUtils(){}
 
 
-    public static List<Books> extractBooks (String urlString){
+    public static List<Book> extractBooks (String urlString){
 
         URL url = createUrl(urlString);
 
@@ -38,7 +38,7 @@ public final class BookUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        List<Books> BookList  = null;
+        List<Book> BookList  = null;
         try {
             BookList = extractFeatureFromJson(bookJSON);
         } catch (JSONException e) {
@@ -84,7 +84,7 @@ public final class BookUtils {
 
             // If the request was successful (response code 200),
             // then read the input stream and parse the response.
-            if (urlConnection.getResponseCode() == 200) {
+            if (urlConnection.getResponseCode() >= 200 && urlConnection.getResponseCode() <300) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
             } else {
@@ -124,17 +124,17 @@ public final class BookUtils {
     }
 
     /**
-     * Return a list of {@link Books} objects that has been built up from
+     * Return a list of {@link Book} objects that has been built up from
      * parsing the given JSON response.
      */
-    private static List<Books> extractFeatureFromJson(String bookJSON) throws JSONException {
+    private static List<Book> extractFeatureFromJson(String bookJSON) throws JSONException {
         // If the JSON string is empty or null, then return early.
         if (TextUtils.isEmpty(bookJSON)) {
             return null;
         }
 
         // Create an empty ArrayList that we can start adding earthquakes to
-        List<Books> BooksList = new ArrayList<>();
+        List<Book> BooksList = new ArrayList<>();
 
         // Try to parse the JSON response string. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
@@ -152,7 +152,7 @@ public final class BookUtils {
                 String title = ObjectInfo.optString("title");
                 String publishDate = ObjectInfo.optString("publishedDate");
                 String url = ObjectInfo.getString("infoLink");
-                Books Book= new Books(title,image,url,publishDate);
+                Book Book= new Book(title,image,url,publishDate);
                 BooksList.add(Book);
             }
 

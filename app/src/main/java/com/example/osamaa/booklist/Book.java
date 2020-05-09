@@ -2,13 +2,13 @@ package com.example.osamaa.booklist;
 
 import android.graphics.Bitmap;
 
-public class Books {
+public class Book {
     private String title;
     private Bitmap image;
     private String url;
     private String publishDate;
 
-    public Books(String title,Bitmap image,String url,String publishDate){
+    public Book(String title, Bitmap image, String url, String publishDate){
         this.title = title;
         this.image= image;
 

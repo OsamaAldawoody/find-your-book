@@ -1,13 +1,13 @@
 package com.example.osamaa.booklist;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.content.AsyncTaskLoader;
 
 import java.util.List;
 
-public class BookLoader extends AsyncTaskLoader<List<Books>> {
+public class BookLoader extends AsyncTaskLoader<List<Book>> {
     private static final String LOG_TAG = BookLoader.class.getName();
 
     /** Query URL */
@@ -20,12 +20,12 @@ public class BookLoader extends AsyncTaskLoader<List<Books>> {
 
     @Nullable
     @Override
-    public List<Books> loadInBackground() {
+    public List<Book> loadInBackground() {
         if (mUrl == null) {
             return null;
         }
         // Perform the network request, parse the response, and extract a list of Books.
-        List<Books> BookList = BookUtils.extractBooks(mUrl);
+        List<Book> BookList = BookUtils.extractBooks(mUrl);
         return BookList;
     }
 

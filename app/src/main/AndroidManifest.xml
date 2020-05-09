@@ -3,7 +3,6 @@
     package="com.example.osamaa.booklist">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -21,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Book_item"></activity>
+        <activity android:name=".BooksList"></activity>
     </application>
 
 </manifest>
